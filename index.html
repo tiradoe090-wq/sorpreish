@@ -35,25 +35,30 @@ button {
   cursor: pointer;
   background: white;
   color: #ff4d6d;
+  transition: 0.3s;
 }
 
 button:hover {
   background: #ffe6ea;
+}
+
+h1 {
+  padding: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 Música estilo Río Roma -->
-<iframe width="0" height="0"
-src="https://www.youtube.com/embed/8i8rF7rGk2w?autoplay=1&loop=1&playlist=8i8rF7rGk2w"
-frameborder="0" allow="autoplay"></iframe>
+<!-- 🎵 Música -->
+<audio id="musica" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
 
 <!-- 💖 Pantallas -->
 <div class="pantalla activa" id="p1">
   <h1>Hola mi amor 💖</h1>
-  <button onclick="siguiente(2)">Toca aquí 😏</button>
+  <button onclick="iniciar()">Toca aquí 😏</button>
 </div>
 
 <div class="pantalla" id="p2">
@@ -62,40 +67,50 @@ frameborder="0" allow="autoplay"></iframe>
 </div>
 
 <div class="pantalla" id="p3">
-  <h1>Perdón si a veces fallo 🥺</h1>
+  <h1>No quiero perderte 🥺</h1>
   <button onclick="siguiente(4)">Siguiente 💔</button>
 </div>
 
 <div class="pantalla" id="p4">
-  <h1>¿Me perdonas por las peleas? 😢</h1>
-  <button onclick="siguiente(5)">Sí 💖</button>
+  <h1>Perdón si a veces fallo 😢</h1>
+  <button onclick="siguiente(5)">Siguiente 💖</button>
 </div>
 
 <div class="pantalla" id="p5">
-  <h1>Sabía que dirías que sí 😍</h1>
-  <button onclick="siguiente(6)">Continuar 💕</button>
+  <h1>¿Me perdonas por las peleas? 💔</h1>
+  <button onclick="siguiente(6)">Sí 💖</button>
 </div>
 
 <div class="pantalla" id="p6">
-  <h1>Perdón por cada momento difícil 🥺</h1>
-  <button onclick="siguiente(7)">Siguiente 💖</button>
+  <h1>Sabía que dirías que sí 😍</h1>
+  <button onclick="siguiente(7)">Continuar 💕</button>
 </div>
 
 <div class="pantalla" id="p7">
-  <h1>Eres lo más importante en mi vida ✨</h1>
+  <h1>Perdón por cada momento difícil 🥺</h1>
   <button onclick="siguiente(8)">Siguiente 💘</button>
 </div>
 
 <div class="pantalla" id="p8">
-  <h1>Prometo hacerte muy feliz 💖</h1>
-  <button onclick="siguiente(9)">Último 😏</button>
+  <h1>Eres lo más importante en mi vida ✨</h1>
+  <button onclick="siguiente(9)">Siguiente 💖</button>
 </div>
 
 <div class="pantalla" id="p9">
+  <h1>Prometo hacerte muy feliz 💕</h1>
+  <button onclick="siguiente(10)">Último 😏</button>
+</div>
+
+<div class="pantalla" id="p10">
   <h1 style="font-size:50px;">TE AMO ❤️</h1>
 </div>
 
 <script>
+function iniciar() {
+  document.getElementById("musica").play();
+  siguiente(2);
+}
+
 function siguiente(num) {
   document.querySelectorAll(".pantalla").forEach(p => p.classList.remove("activa"));
   document.getElementById("p" + num).classList.add("activa");
