@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti 💖</title>
 
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow: hidden;
+  color: white;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  padding-top: 60px;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+p {
+  font-size: 22px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  background: white;
+  color: #ff4d6d;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ffe6ea;
+}
+
+/* corazones flotando */
+.corazon {
+  position: absolute;
+  color: rgba(255,255,255,0.7);
+  font-size: 20px;
+  animation: flotar 6s linear infinite;
+}
+
+@keyframes flotar {
+  0% { transform: translateY(100vh); }
+  100% { transform: translateY(-10vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Para ti mi amor 💖</h1>
+
+  <p>Eres lo mejor que me ha pasado</p>
+  <p>Perdón si a veces fallo 🥺</p>
+
+  <button onclick="mostrar()">No presiones 😏</button>
+
+  <div id="sorpresa" style="display:none; margin-top:20px;">
+    <p>¿Me perdonas por las peleas? 😢</p>
+    <p>Si no… 😔</p>
+    <p>¿Seguro? 🥺</p>
+    <p>Prometo hacerte feliz siempre 💖</p>
+    <h2>TE AMO ❤️</h2>
+  </div>
+</div>
+
+<script>
+function mostrar() {
+  document.getElementById("sorpresa").style.display = "block";
+}
+
+/* generar corazones */
+for (let i = 0; i < 25; i++) {
+  let heart = document.createElement("div");
+  heart.className = "corazon";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+  document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
