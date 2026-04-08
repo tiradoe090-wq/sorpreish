@@ -9,9 +9,8 @@ body {
   margin: 0;
   padding: 0;
   background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   text-align: center;
-  overflow: hidden;
   color: white;
 }
 
@@ -20,24 +19,27 @@ body {
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 42px;
+  margin-bottom: 20px;
 }
 
 p {
   font-size: 22px;
+  margin: 10px;
 }
 
 .botones {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 button {
   padding: 12px 25px;
   border: none;
   margin: 10px;
-  border-radius: 20px;
-  font-size: 16px;
+  border-radius: 25px;
+  font-size: 18px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .si {
@@ -48,24 +50,24 @@ button {
 .no {
   background: #ff4d6d;
   color: white;
-  position: relative;
 }
 
 #mensaje {
-  margin-top: 20px;
+  margin-top: 25px;
   font-size: 22px;
 }
 
 /* corazones */
 .corazon {
-  position: absolute;
+  position: fixed;
+  bottom: -20px;
   font-size: 20px;
   animation: flotar 6s linear infinite;
 }
 
 @keyframes flotar {
-  0% { transform: translateY(100vh); }
-  100% { transform: translateY(-10vh); }
+  0% { transform: translateY(0); opacity:1; }
+  100% { transform: translateY(-100vh); opacity:0; }
 }
 </style>
 </head>
@@ -75,48 +77,54 @@ button {
 <div class="container">
   <h1>Para ti mi amor 💖</h1>
 
-  <p>Perdón por las peleas 🥺</p>
-  <p>¿Me perdonas?</p>
+  <p>Eres lo mejor que me ha pasado ✨</p>
+  <p>Perdón si a veces fallo 🥺</p>
+
+  <p style="margin-top:20px;">¿Me perdonas por las peleas? 💔</p>
 
   <div class="botones">
-    <button class="si" onclick="perdono()">Sí 💖</button>
-    <button class="no" onmouseover="mover()">No 😢</button>
+    <button class="si" onclick="perdono()">Sí, obvio 💖</button>
+    <button class="no" onclick="insistir()">No 😢</button>
   </div>
-
-  <button onclick="playMusic()">🎵 Activar música</button>
 
   <div id="mensaje"></div>
 </div>
 
-<!-- AUDIO -->
-<audio id="musica" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
+<!-- 🎵 Música -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/8i8rF7rGk2w?autoplay=1&loop=1&playlist=8i8rF7rGk2w"
+frameborder="0" allow="autoplay"></iframe>
 
 <script>
 function perdono() {
   document.getElementById("mensaje").innerHTML =
-    "Sabía que dirías que sí 😍💖<br>Perdón por todo 🥺<br>Eres lo mejor que tengo<br><h2>TE AMO ❤️</h2>";
+    "Sabía que dirías que sí 😍💖<br><br>" +
+
+    "<button onclick='mostrarPerdon()'>Haz clic aquí 🥺</button><br>" +
+
+    "<div id='extra' style='display:none;'>Perdón por cada momento difícil 🥺<br></div>" +
+
+    "Eres lo más importante en mi vida ✨<br>" +
+    "Prometo hacerte feliz siempre 💖<br><br>" +
+    "<h2>TE AMO ❤️</h2>";
 }
 
-function mover() {
-  let btn = document.querySelector(".no");
-  btn.style.position = "absolute";
-  btn.style.top = Math.random() * 80 + "%";
-  btn.style.left = Math.random() * 80 + "%";
+function mostrarPerdon() {
+  document.getElementById("extra").style.display = "block";
 }
 
-function playMusic() {
-  document.getElementById("musica").play();
+function insistir() {
+  document.getElementById("mensaje").innerHTML =
+    "¿Segurito? 🥺💔<br>Piensa bien... te amo demasiado 😢";
 }
 
-/* corazones flotando */
-for (let i = 0; i < 25; i++) {
+/* corazones */
+for (let i = 0; i < 30; i++) {
   let heart = document.createElement("div");
   heart.className = "corazon";
   heart.innerHTML = "❤️";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+  heart.style.animationDuration = (3 + Math.random() * 4) + "s";
   document.body.appendChild(heart);
 }
 </script>
