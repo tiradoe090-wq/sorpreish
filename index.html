@@ -54,15 +54,10 @@ h1 {
 
 <body>
 
-<!-- 🎵 Música -->
-<audio id="musica" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
-
 <!-- 💖 Pantallas -->
 <div class="pantalla activa" id="p1">
   <h1>Hola mi amor 💖</h1>
-  <button onclick="iniciar()">Toca aquí 😏</button>
+  <button onclick="siguiente(2)">Toca aquí 😏</button>
 </div>
 
 <div class="pantalla" id="p2">
@@ -85,7 +80,6 @@ h1 {
   
   <button onclick="siguiente(6)">Sí 💖</button>
   <button id="noBtn">No 😢</button>
-
 </div>
 
 <div class="pantalla" id="p6">
@@ -113,11 +107,6 @@ h1 {
 </div>
 
 <script>
-function iniciar() {
-  document.getElementById("musica").play();
-  siguiente(2);
-}
-
 function siguiente(num) {
   document.querySelectorAll(".pantalla").forEach(p => p.classList.remove("activa"));
   document.getElementById("p" + num).classList.add("activa");
@@ -126,15 +115,22 @@ function siguiente(num) {
 /* botón que se escapa 😈 */
 const noBtn = document.getElementById("noBtn");
 
-document.addEventListener("mousemove", function(e) {
-  if (!noBtn) return;
+if(noBtn){
+  document.addEventListener("mousemove", function(e) {
+    const rect = noBtn.getBoundingClientRect();
+    const distanciaX = e.clientX - (rect.left + rect.width / 2);
+    const distanciaY = e.clientY - (rect.top + rect.height / 2);
+    const distancia = Math.sqrt(distanciaX**2 + distanciaY**2);
 
-  let x = Math.random() * (window.innerWidth - 100);
-  let y = Math.random() * (window.innerHeight - 50);
-
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
-});
+    // Si el mouse se acerca a 100px del botón, se mueve
+    if(distancia < 100){
+      let x = Math.random() * (window.innerWidth - rect.width);
+      let y = Math.random() * (window.innerHeight - rect.height);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+  });
+}
 </script>
 
 </body>
