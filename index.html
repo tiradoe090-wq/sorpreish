@@ -83,13 +83,20 @@ button {
     <button class="no" onmouseover="mover()">No 😢</button>
   </div>
 
+  <button onclick="playMusic()">🎵 Activar música</button>
+
   <div id="mensaje"></div>
 </div>
+
+<!-- AUDIO -->
+<audio id="musica" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 function perdono() {
   document.getElementById("mensaje").innerHTML =
-    "Sabía que dirías que sí 😍💖<br>Prometo hacerte muy feliz<br><h2>TE AMO ❤️</h2>";
+    "Sabía que dirías que sí 😍💖<br>Perdón por todo 🥺<br>Eres lo mejor que tengo<br><h2>TE AMO ❤️</h2>";
 }
 
 function mover() {
@@ -97,6 +104,10 @@ function mover() {
   btn.style.position = "absolute";
   btn.style.top = Math.random() * 80 + "%";
   btn.style.left = Math.random() * 80 + "%";
+}
+
+function playMusic() {
+  document.getElementById("musica").play();
 }
 
 /* corazones flotando */
